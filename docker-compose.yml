@@ -14,7 +14,7 @@ services:
     volumes:
       - ./:/var/www
     networks:
-      - [network-name]
+      - reverb_network
   db:
     image: mysql:8.0
     container_name: [db-container-name]
@@ -29,7 +29,7 @@ services:
     volumes:
       - ./docker-compose/mysql:/docker-entrypoint-initdb.d
     networks:
-      - [network-name]
+      - reverb_network
   nginx:
     image: nginx:alpine
     container_name: [nginx-container-name]
@@ -40,7 +40,7 @@ services:
       - ./:/var/www
       - ./docker-compose/nginx:/etc/nginx/conf.d/
     networks:
-      - [network-name]
+      - reverb_network
 networks:
-  [network-name]:
+  reverb_network:
     driver: bridge
